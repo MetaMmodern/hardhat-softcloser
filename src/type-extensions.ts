@@ -15,13 +15,18 @@ type SoftCloserUserConfig = {
   enabled?: boolean;
 };
 
+export type SoftCloserConfig = {
+  numberOfTransactions: number;
+  enabled: boolean;
+};
+
 declare module "hardhat/types/config" {
   export interface HardhatNetworkForkingUserConfig {
     softcloser?: SoftCloserUserConfig;
   }
 
   export interface HardhatNetworkForkingConfig {
-    softcloser: SoftCloserUserConfig;
+    softcloser: SoftCloserConfig;
   }
 }
 
