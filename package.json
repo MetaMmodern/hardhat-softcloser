@@ -1,10 +1,10 @@
 {
-  "name": "hardhat-ts-plugin-boilerplate",
+  "name": "hardhat-softcloser",
   "version": "0.0.1",
   "type": "module",
   "description": "Hardhat TypeScript plugin boilerplate",
-  "repository": "github:nomiclabs/hardhat-ts-plugin-boilerplate",
-  "author": "Nomic Labs LLC",
+  "repository": "github:MetaMmodern/hardhat-softcloser",
+  "author": "MetaMmodern",
   "license": "MIT",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -37,11 +37,11 @@
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.14.2",
-    "chai": "^5.1.1",
+    "chai": "^4.2.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "hardhat": "^2.0.0",
-    "mocha": "^10.4.0",
+    "hardhat": "^2.22.5",
+    "mocha": "^7.1.2",
     "prettier": "^3.3.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
@@ -51,6 +51,9 @@
     "hardhat": "^2.0.0"
   },
   "dependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0"
+    "@nomicfoundation/hardhat-ethers": "^3.0.6",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "ethers": "^6.13.0"
   }
 }
