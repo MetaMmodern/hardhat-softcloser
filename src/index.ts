@@ -38,7 +38,7 @@ extendConfig(
     }
 
     config.paths.newPath = newPath;
-  }
+  },
 );
 
 extendEnvironment((hre) => {

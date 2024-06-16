@@ -12,7 +12,7 @@ describe("Integration tests examples", function () {
     it("Should add the example field", function () {
       assert.instanceOf(
         this.hre.example,
-        ExampleHardhatRuntimeEnvironmentField
+        ExampleHardhatRuntimeEnvironmentField,
       );
     });
 
@@ -27,7 +27,7 @@ describe("Integration tests examples", function () {
     it("Should add the newPath to the config", function () {
       assert.equal(
         this.hre.config.paths.newPath,
-        path.join(process.cwd(), "asd")
+        path.join(process.cwd(), "asd"),
       );
     });
   });
