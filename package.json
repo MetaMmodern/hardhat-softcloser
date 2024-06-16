@@ -14,12 +14,14 @@
     "hardhat-plugin"
   ],
   "scripts": {
-    "lint:fix": "prettier --write 'src/**/*.{js,ts}' 'test/**/*.{js,ts}' && tslint --fix --config tslint.json --project tsconfig.json",
-    "lint": "tslint --config tslint.json --project tsconfig.json",
-    "test": "mocha --exit --recursive 'test/**/*.test.ts'",
     "build": "tsc",
-    "watch": "tsc -w",
-    "prepublishOnly": "npm run build"
+    "lint": "npm run lint:ts && npm run prettier:check && npm run typecheck",
+    "lint:ts": "eslint --config \"./.eslintrc.yml\" --ext .js,.ts .",
+    "prepublishOnly": "npm run build",
+    "prettier": "prettier --config \"./.prettierrc.yml\" --write \"**/*.{js,json,md,ts,yml}\"",
+    "prettier:check": "prettier --check --config \"./.prettierrc.yml\" --ignore-path \"./.prettierignore\" \"**/*.{js,json,md,ts,yml}\"",
+    "test": "mocha --exit --recursive 'test/**/*.test.ts'",
+    "typecheck": "tsc --incremental false --noEmit"
   },
   "files": [
     "dist/src/",
@@ -32,17 +34,21 @@
     "@types/fs-extra": "^5.0.4",
     "@types/mocha": "^5.2.6",
     "@types/node": "^8.10.38",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
     "chai": "^4.2.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "hardhat": "^2.0.0",
     "mocha": "^7.1.2",
     "prettier": "2.0.5",
     "ts-node": "^8.1.0",
-    "tslint": "^5.16.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^4.0.3"
   },
   "peerDependencies": {
     "hardhat": "^2.0.0"
+  },
+  "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0"
   }
 }
