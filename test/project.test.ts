@@ -1,6 +1,7 @@
 // tslint:disable-next-line no-implicit-dependencies
 import { assert } from "chai";
 import path from "path";
+import sinon from "sinon";
 
 import { SoftCloser } from "../src/SoftCloser";
 import { useEnvironment } from "./helpers";
@@ -9,7 +10,7 @@ describe("Integration tests examples", function () {
   describe("Hardhat Runtime Environment extension", function () {
     useEnvironment("hardhat-project");
 
-    it("Should add the example field", function () {
+    it("Should add the softcloser class to hre", function () {
       assert.instanceOf(this.hre.softcloser, SoftCloser);
     });
 
@@ -29,14 +30,4 @@ describe("Integration tests examples", function () {
   //     });
   //   });
   // });
-
-  // describe("Unit tests examples", function () {
-  //   describe("ExampleHardhatRuntimeEnvironmentField", function () {
-  //     describe("sayHello", function () {
-  //       it("Should say hello", function () {
-  //         const field = new ExampleHardhatRuntimeEnvironmentField();
-  //         assert.equal(field.sayHello(), "hello");
-  //       });
-  //     });
-  //   });
 });

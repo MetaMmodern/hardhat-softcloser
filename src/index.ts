@@ -6,14 +6,20 @@ import "./extends";
 import "./type-extensions";
 
 subtask(TASK_NODE_SERVER_READY).setAction(async (args, hre, runSuper) => {
-  console.log("I'm running");
   runSuper(args);
+  if (hre.network.name !== "hardhat") {
+    return hre.network.provider;
+  }
   if (
-    hre.network.name === "hardhat" &&
     hre.config.networks[hre.network.name].forking?.softcloser?.enabled === false
   ) {
     return hre.network.provider;
   }
-  await hre.softcloser.duplicateTransactions();
+
+  try {
+    await hre.softcloser.duplicateTransactions();
+  } catch (error) {
+    console.error("Error while duplicating transactions", error);
+  }
   return hre.network.provider;
 });

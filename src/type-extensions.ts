@@ -8,8 +8,6 @@
 // } from "hardhat/types";
 import type { SoftCloser } from "./SoftCloser";
 
-class ExampleHardhatRuntimeEnvironmentField {}
-
 type SoftCloserUserConfig = {
   numberOfTransactions?: number;
   enabled?: boolean;

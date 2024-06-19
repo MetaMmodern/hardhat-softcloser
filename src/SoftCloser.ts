@@ -4,8 +4,12 @@ import { EthereumProvider } from "hardhat/types";
 
 export class SoftCloser {
   private sourceProvider: JsonRpcProvider;
-  private sourceBlockNumber: number;
+  private _sourceBlockNumber: number;
   private txNumberLimit: number;
+
+  get sourceBlockNumber(): number {
+    return this._sourceBlockNumber;
+  }
 
   constructor(
     sourceProvider: JsonRpcProvider,
@@ -13,19 +17,12 @@ export class SoftCloser {
     txNumberLimit: number,
   ) {
     this.sourceProvider = sourceProvider;
-    this.sourceBlockNumber = sourceBlockNumber;
+    this._sourceBlockNumber = sourceBlockNumber;
     this.txNumberLimit = txNumberLimit;
   }
 
   private numbersUpTo(n: number) {
     return Array.from({ length: n }, (_, i) => i);
-  }
-
-  private async getCurrentBlockNumber(
-    provider: JsonRpcProvider,
-  ): Promise<number> {
-    const blockNumber = await provider.getBlockNumber();
-    return blockNumber;
   }
 
   private async getBlockTransactions(
@@ -36,10 +33,19 @@ export class SoftCloser {
     return block?.transactions;
   }
 
+  /**
+   * Duplicates certain number of transactions from a given block
+   * @param blockNumber Block number to duplicate transactions from (default: source block number provided in config)
+   * @param txNumberLimit Number of transactions to duplicate (default: number provided in config or 0)
+   */
   public async duplicateTransactions(
-    blockNumber = this.sourceBlockNumber,
+    blockNumber = this._sourceBlockNumber,
     txNumberLimit = this.txNumberLimit,
   ): Promise<void> {
+    if (txNumberLimit === 0) {
+      console.log("No transactions to duplicate");
+      return;
+    }
     const { ethers } = await import("hardhat"); // TODO: probably inneficient
     console.log(`Duplicating transactions from block ${blockNumber}`);
     console.log(`Requesting ${txNumberLimit} transactions`);
