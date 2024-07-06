@@ -13,7 +13,7 @@ Best way to learn new things is by tryng to replicate what others have done. And
 <_A step-by-step guide on how to install the plugin_>
 
 ```bash
-npm install hardhat-softcloser [list of peer dependencies]
+npm install hardhat-softcloser hardhat hardhat-ethers ethers
 ```
 
 Import the plugin in your `hardhat.config.js`:

@@ -1,8 +1,8 @@
 // tslint:disable-next-line no-implicit-dependencies
 import { assert } from "chai";
 import path from "path";
-import sinon from "sinon";
 
+// import sinon from "sinon";
 import { SoftCloser } from "../src/SoftCloser";
 import { useEnvironment } from "./helpers";
 
