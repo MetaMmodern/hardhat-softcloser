@@ -4,30 +4,28 @@ A utility plugin that extends network forking to include transactions from the n
 
 [Hardhat](https://hardhat.org) plugin example.
 
-## What
+## Motivation
 
-<_A longer, one paragraph, description of the plugin_>
-
-This plugin will help you with world domination by implementing a simple tic-tac-toe in the terminal.
+Best way to learn new things is by tryng to replicate what others have done. And when attempting to replicate MEV or Arbitrage transactions from Etherscan I was struggling to get the same results, since the state of my local chain was not the same as the one that I was trying to replicate, even though forking was enabled. After multiple attempts I realised that this was due to the fact that the there were more transactions from unfinished next block before the one I was trying to replicate. So, I wrote a small script to copy preceding transactions from the next block and then it grew into this plugin.
 
 ## Installation
 
 <_A step-by-step guide on how to install the plugin_>
 
 ```bash
-npm install <your npm package name> [list of peer dependencies]
+npm install hardhat-softcloser [list of peer dependencies]
 ```
 
 Import the plugin in your `hardhat.config.js`:
 
 ```js
-require("<your plugin npm package name>");
+require("hardhat-softcloser");
 ```
 
 Or if you are using TypeScript, in your `hardhat.config.ts`:
 
 ```ts
-import "<your plugin npm package name>";
+import "hardhat-softcloser";
 ```
 
 ## Required plugins
@@ -55,22 +53,33 @@ output of `npx hardhat help example`
 
 <_A description of each extension to the Hardhat Runtime Environment_>
 
-This plugin extends the Hardhat Runtime Environment by adding an `example` field
-whose type is `ExampleHardhatRuntimeEnvironmentField`.
+This plugin extends the Hardhat Runtime Environment by adding a `SoftCloser` field
+whose type is `SoftCloser`.
 
 ## Configuration
 
 <_A description of each extension to the HardhatConfig or to its fields_>
 
-This plugin extends the `HardhatUserConfig`'s `ProjectPathsUserConfig` object with an optional
-`newPath` field.
+This plugin extends the `HardhatUserConfig`'s `HardhatNetworkForkingUserConfig` object with an optional
+`softCloser` field.
 
 This is an example of how to set it:
 
 ```js
 module.exports = {
-  paths: {
-    newPath: "new-path",
+  defaultNetwork: "hardhat",
+  networks: {
+    hardhat: {
+      forking: {
+        url: process.env.MAINNET_ENDPOINT ?? "",
+        enabled: true,
+        blockNumber: 19649498,
+        softcloser: {
+          numberOfTransactions: 3,
+          enabled: true,
+        },
+      },
+    },
   },
 };
 ```
