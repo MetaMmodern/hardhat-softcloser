@@ -5,6 +5,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env: # Or as an environment variable
+      MAINNET_ENDPOINT: ${{ secrets.MAINNET_ENDPOINT }}
     steps:
       - uses: actions/checkout@v4
       # Setup .npmrc file to publish to npm
