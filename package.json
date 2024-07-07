@@ -20,7 +20,7 @@
     "prepublishOnly": "npm run build",
     "prettier": "prettier --write \"**/*.{js,json,md,ts,yml}\"",
     "prettier:check": "prettier --check \"**/*.{js,json,md,ts,yml}\"",
-    "test": "mocha --exit --recursive 'test/**/*.test.ts'",
+    "test": "mocha --exit --recursive 'test/**/*.test.ts' -r dotenv/config",
     "typecheck": "tsc --incremental false --noEmit"
   },
   "files": [
@@ -30,12 +30,14 @@
   ],
   "devDependencies": {
     "@eslint/js": "^9.5.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/chai": "^4.1.7",
     "@types/eslint__js": "^8.42.3",
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.14.2",
     "chai": "^4.2.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "hardhat": "^2.22.5",
@@ -43,12 +45,11 @@
     "prettier": "^3.3.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.13.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0"
+    "typescript-eslint": "^7.13.0"
   },
   "peerDependencies": {
-    "hardhat": "^2.0.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.6",
-    "ethers": "^6.13.0"
+    "ethers": "^6.13.0",
+    "hardhat": "^2.0.0"
   }
 }
