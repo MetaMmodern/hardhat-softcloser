@@ -1,4 +1,3 @@
-
 # hardhat-softcloser
 
 **ATTENTION! STILL WIP!**
@@ -48,7 +47,7 @@ This plugin creates no additional tasks.
 
 This plugin adds the _example_ task to Hardhat:
 
-```
+```text
 output of `npx hardhat help example`
 ```
 
