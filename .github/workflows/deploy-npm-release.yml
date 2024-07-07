@@ -5,6 +5,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     env: # Or as an environment variable
       MAINNET_ENDPOINT: ${{ secrets.MAINNET_ENDPOINT }}
     steps:
